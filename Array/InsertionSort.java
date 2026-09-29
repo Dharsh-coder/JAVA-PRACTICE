@@ -3,7 +3,7 @@ package Array;
 import java.util.Arrays;
 import java.util.Scanner;
 
-public class SelectionSort {
+public class InsertionSort {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         int n = sc.nextInt();
@@ -11,17 +11,14 @@ public class SelectionSort {
         for(int i=0;i<n;i++){
             arr[i] = sc.nextInt();
         }
-        for(int i=0;i<n-1;i++){
-            int minindex=i;
-            for(int j=i+1;j<n;j++){
-                if(arr[j]<arr[minindex]){
-                    minindex = j;    
-                }
-                
-            }  
-            int temp = arr[i];
-            arr[i] = arr[minindex];
-            arr[minindex]=temp; 
+        for(int i=1;i<n;i++){
+            int key = arr[i];
+            int j=i-1;
+            while(j>=0 && arr[j]>key){
+                arr[j+1] = arr[j];
+                j--;
+            }
+            arr[j+1]=key;
         }
         System.out.println(Arrays.toString(arr));
         sc.close();
